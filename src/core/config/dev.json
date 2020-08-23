@@ -1,0 +1,5 @@
+{
+  "API_KEY": "2732c97587da4acea1c3e181c2421de2",
+  "timeout": 30000,
+  "baseURL": "https://newsapi.org/v2/"
+}
