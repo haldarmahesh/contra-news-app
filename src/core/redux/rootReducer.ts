@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 
-import counterReducer from "../../presentation/state/counter/counter.reducer";
+import newsItems from "../../presentation/state/counter/news/news.reducer";
 
 const rootReducer = combineReducers({
-  counter: counterReducer,
+  newList: newsItems,
 });
 
 export default rootReducer;
