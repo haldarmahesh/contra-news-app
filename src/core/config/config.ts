@@ -2,8 +2,9 @@ import devEnv from "./dev.json";
 
 type IConfig = {
   API_KEY: string;
+  timeout: number;
+  baseURL: string;
 };
 
-export default function config(): IConfig {
-  return devEnv;
-}
+const config: IConfig = devEnv;
+export default config;
