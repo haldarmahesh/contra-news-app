@@ -3,10 +3,15 @@ import {
   NEWS_LIST_LOAD_SUCCESS,
   NEWS_LIST_LOAD_FAILURE,
 } from "./news.types";
+import { NewsItem } from "../../../domain/entities/newsItem";
 
-const initialState = {
+export type NewsState = {
+  loading: boolean;
+  newsItems: NewsItem[];
+};
+const initialState: NewsState = {
   loading: false,
-  items: [],
+  newsItems: [],
 };
 
 function newsItems(state = initialState, action: any = null) {
@@ -26,7 +31,7 @@ function newsItems(state = initialState, action: any = null) {
     case NEWS_LIST_LOAD_SUCCESS:
       return {
         ...state,
-        items: action.payload,
+        newsItems: action.payload,
         loading: false,
       };
 

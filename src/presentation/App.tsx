@@ -1,17 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
 import HomeScreen from "./screens/HomeScreen";
-import { getNewsList } from "./state/counter/news/news.actions";
-
-function App(props: any) {
+import { getNewsList } from "./state/news/news.actions";
+import { StoreState } from "../core/redux/store";
+type IProps = {
+  getNewsList: Function;
+};
+function App(props: IProps) {
   return (
     <>
       <HomeScreen />
       <div className="container">
-        <button
-          className="btn btn-primary"
-          onClick={() => props.increaseCounter()}
-        >
+        <button className="btn btn-primary" onClick={() => props.getNewsList()}>
           Get data
         </button>
       </div>
@@ -19,15 +19,16 @@ function App(props: any) {
   );
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: StoreState) => {
+  console.log(state);
   return {
-    newsItems: state.newList.items,
+    newsItems: state.newsItems.newsItems,
   };
 };
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    increaseCounter: () => dispatch(getNewsList),
+    getNewsList: () => dispatch(getNewsList),
   };
 };
 
