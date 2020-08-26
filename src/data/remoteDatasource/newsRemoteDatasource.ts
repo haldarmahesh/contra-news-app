@@ -26,7 +26,6 @@ function responseToEntityMapper(response: AxiosResponse): NewsItemEntity[] {
   });
 }
 export class NewsRemoteDatasource {
-  DEFAULT_QUERY = "current";
   async getList(searchQuery: string): Promise<NewsItemEntity[]> {
     let response = await contraHttpClient.get<DataResponse>("/everything", [
       { key: "q", value: searchQuery },
