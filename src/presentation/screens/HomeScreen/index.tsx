@@ -4,7 +4,8 @@ import { StoreState } from "../../../core/redux/store";
 import { connect } from "react-redux";
 import { getNewsList } from "../../state/news/news.actions";
 import { Dispatch } from "redux";
-import NewsCard from "../../component/NewsCard";
+
+import NewsCardList from "./newsCardList";
 
 type IProps = {
   getNewsList: Function;
@@ -16,9 +17,7 @@ function HomeScreen(props: IProps) {
       <Header />
       <div className="container">
         <div>HomePage</div>
-        <div className="card-columns">
-          <NewsCard news={props.newsItems[0]} />
-        </div>
+        <NewsCardList list={props.newsItems} />
       </div>
       <div className="container">
         <button className="btn btn-primary" onClick={() => props.getNewsList()}>

@@ -17,6 +17,7 @@ export class NewsRemoteDatasource {
       (item: NewsItemEntity) =>
         new NewsItemEntity(
           new Source(item.source.id, item.source.name),
+          item.author,
           item.title,
           item.description,
           item.url,

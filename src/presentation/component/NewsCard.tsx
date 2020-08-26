@@ -1,10 +1,13 @@
-import { FC } from "react";
-
 import React from "react";
+import moment from "moment";
 import { NewsItemEntity } from "../../domain/entities/newsItemEntity";
 type IProps = {
   news: NewsItemEntity;
 };
+
+function getTime(time: string): string {
+  return moment.utc(time).fromNow();
+}
 function NewsCard(props: IProps) {
   if (!props.news) {
     return null;
@@ -21,11 +24,13 @@ function NewsCard(props: IProps) {
         <p className="card-text">{props.news.description}</p>
         <p className="card-text">
           {/* TODO add moment */}
-          <small className="text-muted">{props.news.publishedAt}</small>
+          <small className="text-muted">
+            {props.news.author}, {props.news.source.name}
+          </small>
         </p>
       </div>
       <div className="card-footer">
-        <small className="text-muted">Last updated 3 mins ago</small>
+        <small className="text-muted">{getTime(props.news.publishedAt)}</small>
       </div>
     </div>
   );
