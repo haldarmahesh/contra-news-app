@@ -1,5 +1,5 @@
-import { NewsItem } from "../entities/newsItem";
+import { NewsItemEntity } from "../entities/newsItemEntity";
 
 export default interface NewsListRespository {
-  getList(): Promise<NewsItem[]>;
+  getList(): Promise<NewsItemEntity[]>;
 }

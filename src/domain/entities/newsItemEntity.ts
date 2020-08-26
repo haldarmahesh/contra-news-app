@@ -1,6 +1,6 @@
 import { Source } from "./source";
 
-export class NewsItem {
+export class NewsItemEntity {
   constructor(
     public source: Source,
     public title: string,

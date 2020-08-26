@@ -1,11 +1,9 @@
-import NewsListRepositoryImpl from "../../data/repository/newListRepositoryImpl";
-import { NewsItem } from "../entities/newsItem";
+import { NewsItemEntity } from "../entities/newsItemEntity";
+import NewsListRespository from "../repository/newsListRepository";
 
 export class NewsUsecase {
-  getNewsUseCase(): Promise<NewsItem[]> {
-    let newsRepositoryList = new NewsListRepositoryImpl();
-    return newsRepositoryList.getList();
+  constructor(private newsListRepository: NewsListRespository) {}
+  getNewsUseCase(): Promise<NewsItemEntity[]> {
+    return this.newsListRepository.getList();
   }
 }
-
-export const newsUsecase = new NewsUsecase();
