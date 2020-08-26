@@ -11,9 +11,6 @@ type IProps = {
 } & ReturnType<typeof mapStateToProps>;
 
 function SearchResult(props: IProps) {
-  //   handleSearch(keyword: string) {
-  //     this.props.getNewsList(keyword);
-  //   }
   let { id } = useParams();
   useEffect(() => {
     props.getNewsList(id);
@@ -31,7 +28,6 @@ function SearchResult(props: IProps) {
 const mapStateToProps = (state: StoreState) => {
   return {
     newsItems: state.newsItems.newsItems,
-    headlines: state.headlines.newsItems,
   };
 };
 
