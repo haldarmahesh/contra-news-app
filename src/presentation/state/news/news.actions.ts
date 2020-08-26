@@ -3,7 +3,7 @@ import {
   NEWS_LIST_LOAD_SUCCESS,
   NEWS_LIST_LOAD_FAILURE,
 } from "./news.types";
-import { Dispatch, ActionCreator } from "redux";
+import { Dispatch } from "redux";
 import { NewsUsecase } from "../../../domain/usecases/getNewsUseCase";
 import NewsListRepositoryImpl from "../../../data/repository/newListRepositoryImpl";
 import { NewsItemEntity } from "../../../domain/entities/newsItemEntity";

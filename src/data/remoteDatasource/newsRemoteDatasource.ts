@@ -10,12 +10,14 @@ type DataResponse = {
 
 export class NewsRemoteDatasource {
   async getList(): Promise<NewsItemEntity[]> {
+    let initId = 1;
     let response = await contraHttpClient.get<DataResponse>("/everything", [
       { key: "q", value: "bitcoin" },
     ]);
     return response.data.articles.map(
       (item: NewsItemEntity) =>
         new NewsItemEntity(
+          initId++,
           new Source(item.source.id, item.source.name),
           item.author,
           item.title,

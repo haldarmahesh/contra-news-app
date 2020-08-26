@@ -2,6 +2,7 @@ import { Source } from "./source";
 
 export class NewsItemEntity {
   constructor(
+    public id: number,
     public source: Source,
     public author: string,
     public title: string,

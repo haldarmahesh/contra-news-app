@@ -16,7 +16,6 @@ function HomeScreen(props: IProps) {
     <>
       <Header />
       <div className="container">
-        <div>HomePage</div>
         <NewsCardList list={props.newsItems} />
       </div>
       <div className="container">
