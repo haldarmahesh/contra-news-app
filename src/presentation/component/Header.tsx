@@ -1,38 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+
 export default function Header() {
+  const [searchKey, setSearchKey] = useState("");
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-      <a href="#" className="navbar-brand">
-        Brand
-      </a>
+      <NavLink to="/">
+        <span className="navbar-brand">Contra Newss</span>
+      </NavLink>
       <button
-        type="button"
         className="navbar-toggler"
+        type="button"
         data-toggle="collapse"
-        data-target="#navbarCollapse"
+        data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
       >
         <span className="navbar-toggler-icon"></span>
       </button>
 
-      <div className="collapse navbar-collapse" id="navbarCollapse">
-        <div className="navbar-nav">
-          <a href="#" className="nav-item nav-link active">
-            Home
-          </a>
-          <a href="#" className="nav-item nav-link">
-            Profile
-          </a>
-          <a href="#" className="nav-item nav-link">
-            Messages
-          </a>
-          <a href="#" className="nav-item nav-link disabled">
-            Reports
-          </a>
-        </div>
-        <div className="navbar-nav ml-auto">
-          <a href="#" className="nav-item nav-link">
-            Login
-          </a>
+      <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li className="nav-item">
+            <NavLink
+              to="/headlines"
+              activeClassName="active"
+              className="nav-link"
+            >
+              Headlines <span className="sr-only">(current)</span>
+            </NavLink>
+          </li>
+        </ul>
+        <div className="form-inline my-2 my-lg-0">
+          <input
+            className="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            onChange={(event) => setSearchKey(event.target.value)}
+          />
+          <Link to={`/search/${searchKey}`}>
+            <button className="btn btn-outline-success my-2 my-sm-0">
+              Search
+            </button>
+          </Link>
         </div>
       </div>
     </nav>

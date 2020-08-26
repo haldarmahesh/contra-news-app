@@ -22,7 +22,7 @@ function getCurrentNews(
 }
 function NewsDetailScreen(props: IProps) {
   let { id } = useParams();
-  console.log(">> data", id, props.newList);
+
   let currentNews = getCurrentNews(id, props.newList);
   return (
     <>

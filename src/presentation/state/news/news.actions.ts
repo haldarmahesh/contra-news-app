@@ -11,36 +11,19 @@ type IAction = {
   type: string;
   payload?: any;
 };
-export const getNewsList = async (dispatch: Dispatch) => {
-  console.log(">> 11", dispatch);
+export const getNewsList = async (dispatch: Dispatch, seachQuery: string) => {
   dispatch(fetchNewsListPending());
 
   try {
     const newsListRepositoryImpl = new NewsListRepositoryImpl();
     const newsUsecase = new NewsUsecase(newsListRepositoryImpl);
 
-    const newItems = await newsUsecase.getNewsUseCase();
+    const newItems = await newsUsecase.getNewsUseCase(seachQuery);
     dispatch(fetchNewsListSuccess(newItems));
   } catch (error) {
-    dispatch(fetchNewListError(error));
+    dispatch(fetchNewsListError(error));
   }
 };
-
-export class NewsAction {
-  async getNewsList(dispatch: Dispatch) {
-    dispatch(fetchNewsListPending());
-
-    try {
-      const newsListRepositoryImpl = new NewsListRepositoryImpl();
-      const newsUsecase = new NewsUsecase(newsListRepositoryImpl);
-
-      const newItems = await newsUsecase.getNewsUseCase();
-      dispatch(fetchNewsListSuccess(newItems));
-    } catch (error) {
-      dispatch(fetchNewListError(error));
-    }
-  }
-}
 
 export function fetchNewsListPending() {
   return { type: NEWS_LIST_LOAD_REQUEST };
@@ -49,6 +32,6 @@ export function fetchNewsListSuccess(newItems: NewsItemEntity[]) {
   return { type: NEWS_LIST_LOAD_SUCCESS, payload: newItems };
 }
 
-export function fetchNewListError(error: Error) {
+export function fetchNewsListError(error: Error) {
   return { type: NEWS_LIST_LOAD_FAILURE, error };
 }

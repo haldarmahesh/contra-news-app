@@ -1,15 +1,10 @@
-import React, { CSSProperties } from "react";
+import React from "react";
 import moment from "moment";
 import { NewsItemEntity } from "../../domain/entities/newsItemEntity";
 import "../../core/styles/index.css";
-import { Link } from "react-router-dom";
 type IProps = {
   news: NewsItemEntity;
 };
-// let unlinkStyle: CSSProperties = {
-//   color: "inherit",
-//   textDecoration: "inherit",
-// };
 
 function getTime(time: string): string {
   return moment.utc(time).fromNow();
@@ -19,10 +14,6 @@ function NewsCard(props: IProps) {
     return null;
   }
   return (
-    // <Link
-    //   to={{ pathname: `/detail/${props.news.id}`, state: props.news }}
-    //   style={unlinkStyle}
-    // >
     <div className="card ">
       <img
         className="card-img-top"
@@ -46,7 +37,6 @@ function NewsCard(props: IProps) {
         <small className="text-muted">{getTime(props.news.publishedAt)}</small>
       </div>
     </div>
-    // </Link>
   );
 }
 
