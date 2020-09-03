@@ -27,10 +27,15 @@ function responseToEntityMapper(response: AxiosResponse): NewsItemEntity[] {
 }
 export class NewsRemoteDatasource {
   async getList(searchQuery: string): Promise<NewsItemEntity[]> {
-    let response = await contraHttpClient.get<DataResponse>("/everything", [
-      { key: "q", value: searchQuery },
-    ]);
-    return responseToEntityMapper(response);
+    try {
+      let response = await contraHttpClient.get<DataResponse>("/everything", [
+        { key: "q", value: searchQuery },
+      ]);
+      return responseToEntityMapper(response);
+    } catch (err) {
+      console.log("Caught error while calling /everything API", err);
+      throw Error("Http call failed");
+    }
   }
 
   async getHeadlines(): Promise<NewsItemEntity[]> {
