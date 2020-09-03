@@ -39,11 +39,17 @@ export class NewsRemoteDatasource {
   }
 
   async getHeadlines(): Promise<NewsItemEntity[]> {
-    let response = await contraHttpClient.get<DataResponse>("/top-headlines", [
-      { key: "country", value: "us" },
-    ]);
+    try {
+      let response = await contraHttpClient.get<DataResponse>(
+        "/top-headlines",
+        [{ key: "country", value: "us" }]
+      );
 
-    return responseToEntityMapper(response);
+      return responseToEntityMapper(response);
+    } catch (err) {
+      console.log("Caught error while calling /healines API", err);
+      throw Error("Http call failed");
+    }
   }
 }
 
