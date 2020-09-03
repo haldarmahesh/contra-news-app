@@ -19,6 +19,7 @@ describe("NewListRepositoryImpl", () => {
         expect(result[0].author).toEqual(
           newsMockData.newsItemEntityData.author
         );
+        expect(newsRemoteDatasource.getHeadlines).toHaveBeenCalledTimes(1);
       });
     });
     describe("when excpetion is thrown", () => {
@@ -31,6 +32,7 @@ describe("NewListRepositoryImpl", () => {
           await newsListRepositoryImpl.getHeadlines();
         } catch (err) {
           expect(err.message).toEqual("Http call failed");
+          expect(newsRemoteDatasource.getHeadlines).toHaveBeenCalledTimes(1);
         }
       });
     });
@@ -46,6 +48,7 @@ describe("NewListRepositoryImpl", () => {
         expect(result[0].author).toEqual(
           newsMockData.newsItemEntityData.author
         );
+        expect(newsRemoteDatasource.getList).toHaveBeenCalledTimes(1);
       });
     });
     describe("when excpetion is thrown", () => {
@@ -58,6 +61,7 @@ describe("NewListRepositoryImpl", () => {
           await newsListRepositoryImpl.getList("query");
         } catch (err) {
           expect(err.message).toEqual("Http call failed");
+          expect(newsRemoteDatasource.getList).toHaveBeenCalledTimes(1);
         }
       });
     });

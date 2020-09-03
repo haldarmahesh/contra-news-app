@@ -20,6 +20,10 @@ describe("NewsRemoteDatasource", () => {
 
         expect(contraHttpClient.get).toBeCalledTimes(1);
         expect(news?.length).toBe(0);
+        expect(contraHttpClient.get).toHaveBeenCalledTimes(1);
+        expect(contraHttpClient.get).toHaveBeenCalledWith("/everything", [
+          { key: "q", value: "some" },
+        ]);
       });
       it("should should receive and parse httpClient get function for the data", async () => {
         (contraHttpClient.get as jest.Mock).mockResolvedValue({
@@ -40,6 +44,7 @@ describe("NewsRemoteDatasource", () => {
         if (news != null) {
           expect(news[0].title).toBe("Some title");
           expect(news.length).toBe(1);
+          expect(contraHttpClient.get).toHaveBeenCalledTimes(1);
         }
       });
     });
@@ -56,6 +61,7 @@ describe("NewsRemoteDatasource", () => {
           await newsRemoteDatasource.getList("some");
         } catch (err) {
           expect(err.message).toBe("Http call failed");
+          expect(contraHttpClient.get).toHaveBeenCalledTimes(1);
         }
       });
     });

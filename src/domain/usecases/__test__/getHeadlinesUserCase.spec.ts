@@ -22,6 +22,8 @@ describe("GetHeadlinesUseCase", () => {
         expect(result[0].author).toEqual(
           newsMockData.newsItemEntityData.author
         );
+        expect(newsListRepository.getHeadlines).toBeCalledTimes(1);
+        expect(newsListRepository.getHeadlines).toHaveBeenCalledWith();
       });
     });
     describe("when excpetion is thrown", () => {
@@ -34,6 +36,8 @@ describe("GetHeadlinesUseCase", () => {
           await getHeadlinesUseCase.getHeadlines();
         } catch (err) {
           expect(err.message).toEqual("Http call failed");
+          expect(newsListRepository.getHeadlines).toBeCalledTimes(1);
+          expect(newsListRepository.getHeadlines).toHaveBeenCalledWith();
         }
       });
     });
